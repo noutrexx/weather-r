@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-React, TypeScript and Vite ile hazirlanmis hava durumu paneli. Sehir aramasi yapildiginda guncel hava kosullari, temel metrikler ve 5 gunluk sicaklik/nem grafigi OpenWeatherMap API uzerinden gosterilir.
+A weather dashboard built with React, TypeScript, and Vite. When a city search is performed, current weather conditions, key metrics, and a 5-day temperature and humidity chart are displayed via the OpenWeatherMap API.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
