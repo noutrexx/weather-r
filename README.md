@@ -15,12 +15,20 @@ Repository: [github.com/noutrexx/weather-dashboard](https://github.com/noutrexx/
 
 ![Global Weather Explorer world map](./public/screenshots/home-map-full.png)
 
+## Visual States
+
+| Home Map | Region Focus | City Selected |
+| --- | --- | --- |
+| ![World map dashboard home](./public/screenshots/home-map-full.png) | ![Asia region focus](./public/screenshots/region-asia.png) | ![Tokyo selected on the map](./public/screenshots/tokyo-selected.png) |
+
 ## What It Does
 
 - Starts with a clickable world-region map instead of an empty search-only screen.
 - Lets users select regions such as Europe, Asia, Africa, Oceania, and the Americas.
+- Adds city pins, regional flow lines, climate highlights, and visual map metrics.
 - Shows curated quick cities for each selected region.
 - Provides smart city suggestions and popular city shortcuts for faster searching.
+- Supports shareable map states through `region` and `city` URL query parameters.
 - Displays current temperature, humidity, wind, pressure, and feels-like values.
 - Visualizes the 5-day temperature and humidity forecast with Recharts.
 - Handles missing API keys, invalid cities, pending keys, and network errors with clear Turkish messages.
