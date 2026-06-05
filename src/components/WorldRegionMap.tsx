@@ -2,10 +2,13 @@ import { Activity, CloudSun, Compass, MapPin, Waves } from 'lucide-react'
 
 import type { CityOption, RegionId, WorldRegion } from '../data/worldRegions'
 import { tr } from '../i18n/tr'
+import type { CurrentWeatherResponse } from '../types/weather'
 import { cn } from '../utils/cn'
 
 interface WorldRegionMapProps {
   regions: WorldRegion[]
+  regionWeather: Record<string, CurrentWeatherResponse>
+  regionWeatherLoading: boolean
   selectedCityQuery: string
   selectedRegionId: RegionId
   onSelectRegion: (regionId: RegionId) => void
@@ -14,6 +17,8 @@ interface WorldRegionMapProps {
 
 export function WorldRegionMap({
   regions,
+  regionWeather,
+  regionWeatherLoading,
   selectedCityQuery,
   selectedRegionId,
   onSelectRegion,
@@ -23,8 +28,8 @@ export function WorldRegionMap({
     regions.find((region) => region.id === selectedRegionId) ?? regions[0]
 
   return (
-    <section className="overflow-hidden rounded-[1.5rem] border border-slate-800/80 bg-slate-950/80 shadow-2xl shadow-sky-950/20">
-      <div className="grid gap-0 lg:grid-cols-[minmax(0,1.45fr)_380px]">
+    <section className="min-w-0 overflow-hidden rounded-[1.5rem] border border-slate-800/80 bg-slate-950/80 shadow-2xl shadow-sky-950/20">
+      <div className="grid min-w-0 gap-0 lg:grid-cols-[minmax(0,1.45fr)_380px]">
         <div className="relative min-h-[500px] overflow-hidden bg-[linear-gradient(180deg,#07111f,#020617)] p-4 sm:p-6">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_28%,rgba(56,189,248,0.20),transparent_30%),radial-gradient(circle_at_18%_80%,rgba(20,184,166,0.12),transparent_28%)]" />
           <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
@@ -106,6 +111,7 @@ export function WorldRegionMap({
             ))}
 
             <path
+              className="weather-flow-line"
               d="M210 210 C340 120 515 125 675 170 C805 205 868 272 904 350"
               fill="none"
               stroke="url(#oceanLine)"
@@ -113,6 +119,7 @@ export function WorldRegionMap({
               strokeWidth="3"
             />
             <path
+              className="weather-flow-line weather-flow-line-alt"
               d="M290 458 C430 380 600 356 760 396 C838 416 896 454 930 500"
               fill="none"
               stroke="rgba(45,212,191,0.22)"
@@ -148,39 +155,16 @@ export function WorldRegionMap({
               )
             })}
 
-            {selectedRegion.cities.map((city) => {
-              const isSelected = city.query === selectedCityQuery
-
-              return (
-                <g key={city.query}>
-                  <circle
-                    cx={city.x}
-                    cy={city.y}
-                    fill={isSelected ? '#facc15' : '#020617'}
-                    r={isSelected ? 9 : 6}
-                    stroke={isSelected ? '#fde68a' : '#7dd3fc'}
-                    strokeWidth="3"
-                  />
-                  <circle
-                    cx={city.x}
-                    cy={city.y}
-                    fill="none"
-                    r={isSelected ? 18 : 13}
-                    stroke={isSelected ? 'rgba(250,204,21,0.42)' : 'rgba(125,211,252,0.24)'}
-                    strokeWidth="2"
-                  />
-                  <text
-                    fill={isSelected ? '#fef3c7' : '#cbd5e1'}
-                    fontSize="18"
-                    fontWeight="700"
-                    x={city.x + 16}
-                    y={city.y + 6}
-                  >
-                    {city.label}
-                  </text>
-                </g>
-              )
-            })}
+            {selectedRegion.cities.map((city) => (
+              <CityPin
+                city={city}
+                isLoading={regionWeatherLoading}
+                isSelected={city.query === selectedCityQuery}
+                key={city.query}
+                onSelectCity={onSelectCity}
+                weather={regionWeather[city.query]}
+              />
+            ))}
           </svg>
 
           <div className="relative z-10 mt-1 grid gap-3 sm:grid-cols-3">
@@ -226,6 +210,7 @@ export function WorldRegionMap({
             <div className="grid gap-2">
               {selectedRegion.cities.map((city) => {
                 const isSelected = city.query === selectedCityQuery
+                const weather = regionWeather[city.query]
 
                 return (
                   <button
@@ -241,7 +226,7 @@ export function WorldRegionMap({
                   >
                     <span>{city.label}</span>
                     <span className="text-xs font-bold text-slate-500">
-                      {city.country}
+                      {weather ? `${Math.round(weather.main.temp)}°C` : city.country}
                     </span>
                   </button>
                 )
@@ -251,6 +236,83 @@ export function WorldRegionMap({
         </aside>
       </div>
     </section>
+  )
+}
+
+function CityPin({
+  city,
+  weather,
+  isLoading,
+  isSelected,
+  onSelectCity,
+}: {
+  city: CityOption
+  weather?: CurrentWeatherResponse
+  isLoading: boolean
+  isSelected: boolean
+  onSelectCity: (city: CityOption) => void
+}) {
+  const badge = weather
+    ? `${Math.round(weather.main.temp)}°C`
+    : isLoading
+      ? '...'
+      : city.country
+
+  return (
+    <g
+      className="cursor-pointer outline-none"
+      onClick={() => onSelectCity(city)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onSelectCity(city)
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
+      <title>
+        {city.label}
+        {weather ? ` - ${Math.round(weather.main.temp)}°C` : ''}
+      </title>
+      <circle
+        className={isSelected ? 'weather-pin-pulse' : undefined}
+        cx={city.x}
+        cy={city.y}
+        fill="none"
+        r={isSelected ? 20 : 13}
+        stroke={isSelected ? 'rgba(250,204,21,0.48)' : 'rgba(125,211,252,0.24)'}
+        strokeWidth="2"
+      />
+      <circle
+        cx={city.x}
+        cy={city.y}
+        fill={isSelected ? '#facc15' : '#020617'}
+        r={isSelected ? 9 : 6}
+        stroke={isSelected ? '#fde68a' : '#7dd3fc'}
+        strokeWidth="3"
+      />
+      <text
+        className="city-pin-label"
+        fill={isSelected ? '#fef3c7' : '#cbd5e1'}
+        fontSize="18"
+        fontWeight="700"
+        x={city.x + 16}
+        y={city.y + 6}
+      >
+        {city.label}
+      </text>
+      <text
+        className="city-pin-badge"
+        fill={isSelected ? '#fde68a' : '#67e8f9'}
+        fontSize="15"
+        fontWeight="800"
+        x={city.x + 16}
+        y={city.y + 25}
+      >
+        {badge}
+      </text>
+    </g>
   )
 }
 

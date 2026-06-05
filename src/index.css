@@ -6,3 +6,50 @@
     @apply antialiased;
   }
 }
+
+@layer utilities {
+  .weather-flow-line {
+    animation: weather-flow 18s linear infinite;
+  }
+
+  .weather-flow-line-alt {
+    animation-duration: 22s;
+    animation-direction: reverse;
+  }
+
+  .weather-pin-pulse {
+    animation: weather-pin-pulse 1.8s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+@keyframes weather-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+
+@keyframes weather-pin-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .city-pin-label,
+  .city-pin-badge {
+    display: none;
+  }
+}

@@ -1,11 +1,10 @@
 import { useCallback, useMemo, useState } from 'react'
 import { BarChart3, Globe2, Loader2, MapPinned, SearchCheck } from 'lucide-react'
 
-import { CurrentWeather } from './components/CurrentWeather'
+import { CityWeatherConsole } from './components/CityWeatherConsole'
 import { ErrorAlert } from './components/ErrorAlert'
 import { LoadingSkeleton } from './components/LoadingSkeleton'
 import { SearchBar } from './components/SearchBar'
-import { WeatherChart } from './components/WeatherChart'
 import { WorldRegionMap } from './components/WorldRegionMap'
 import {
   cityOptions,
@@ -15,8 +14,11 @@ import {
   worldRegions,
 } from './data/worldRegions'
 import { useFetch } from './hooks/useFetch'
+import { useRecentCities } from './hooks/useRecentCities'
+import { useRegionWeather } from './hooks/useRegionWeather'
 import { tr } from './i18n/tr'
 import { fetchCurrentWeather, fetchForecast } from './services/weatherApi'
+import { getWeatherThemeStyle } from './utils/weatherTheme'
 
 function getInitialRegionId(): RegionId {
   if (typeof window === 'undefined') {
@@ -66,6 +68,7 @@ function App() {
   const [selectedRegionId, setSelectedRegionId] =
     useState<RegionId>(initialRegionId)
   const enabled = city.length >= 2
+  const { recentCities, addRecentCity } = useRecentCities()
 
   const selectedRegion = useMemo(
     () =>
@@ -73,6 +76,7 @@ function App() {
       worldRegions[0],
     [selectedRegionId],
   )
+  const regionWeather = useRegionWeather(selectedRegion.cities)
 
   const handleSearch = useCallback((value: string) => {
     setCity(value)
@@ -85,6 +89,7 @@ function App() {
       setCity(selectedCity.query)
       setSearchLabel(selectedCity.label)
       setSelectedCityQuery(selectedCity.query)
+      addRecentCity(selectedCity)
 
       const matchingRegion = worldRegions.find((region) =>
         region.cities.some((cityOption) => cityOption.query === selectedCity.query),
@@ -95,7 +100,7 @@ function App() {
         updateBrowserState(matchingRegion.id, selectedCity)
       }
     },
-    [],
+    [addRecentCity],
   )
 
   const handleSelectRegion = useCallback((regionId: RegionId) => {
@@ -118,13 +123,16 @@ function App() {
 
   const isLoading = enabled && (loadingCurrent || loadingForecast)
   const error = currentError ?? forecastError
-
+  const themeStyle = getWeatherThemeStyle(current?.weather[0]?.main)
   return (
-    <div className="min-h-svh bg-slate-950 text-slate-100">
+    <div className="min-h-svh overflow-x-hidden bg-slate-950 text-slate-100 transition-colors">
       <div className="mx-auto flex min-h-svh max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-        <div className="pointer-events-none fixed inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,rgba(14,165,233,0.14),transparent)]" />
-        <header className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,0.8fr)] lg:items-end">
-          <div className="space-y-4">
+        <div
+          className="pointer-events-none fixed inset-x-0 top-0 h-80 transition"
+          style={themeStyle}
+        />
+        <header className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,0.8fr)] lg:items-end">
+          <div className="min-w-0 space-y-4">
             <span className="inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-sky-300/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-sky-100">
               <Globe2 className="size-4" aria-hidden />
               Weather Intelligence
@@ -144,6 +152,7 @@ function App() {
             onSelectCity={handleSelectCity}
             onValueChange={setSearchLabel}
             popularCities={popularCities}
+            recentCities={recentCities}
             suggestions={cityOptions}
             value={searchLabel}
           />
@@ -166,6 +175,8 @@ function App() {
         <WorldRegionMap
           onSelectCity={handleSelectCity}
           onSelectRegion={handleSelectRegion}
+          regionWeather={regionWeather.data}
+          regionWeatherLoading={regionWeather.isLoading}
           regions={worldRegions}
           selectedCityQuery={selectedCityQuery}
           selectedRegionId={selectedRegionId}
@@ -195,10 +206,7 @@ function App() {
         {enabled && !isLoading && error && <ErrorAlert message={error} />}
 
         {enabled && !isLoading && !error && current && (
-          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <CurrentWeather weather={current} />
-            <WeatherChart forecast={forecast} />
-          </div>
+          <CityWeatherConsole current={current} forecast={forecast} />
         )}
       </div>
     </div>

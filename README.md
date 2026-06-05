@@ -1,6 +1,6 @@
 # Global Weather Explorer
 
-Interactive weather dashboard with a world-map first screen, regional discovery, smart city search, current conditions, and a 5-day forecast chart powered by OpenWeatherMap.
+Interactive weather dashboard with a world-map first screen, regional discovery, live city pins, smart search, weather-aware atmosphere, current conditions, and a 5-day forecast console powered by OpenWeatherMap.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
@@ -17,18 +17,20 @@ Repository: [github.com/noutrexx/weather-dashboard](https://github.com/noutrexx/
 
 ## Visual States
 
-| Home Map | Region Focus | City Selected |
-| --- | --- | --- |
-| ![World map dashboard home](./public/screenshots/home-map-full.png) | ![Asia region focus](./public/screenshots/region-asia.png) | ![Tokyo selected on the map](./public/screenshots/tokyo-selected.png) |
+| Home Map | Region Focus | City Selected | Mobile |
+| --- | --- | --- | --- |
+| ![World map dashboard home](./public/screenshots/home-map-full.png) | ![Asia region focus](./public/screenshots/region-asia.png) | ![Tokyo selected on the map](./public/screenshots/tokyo-selected.png) | ![Mobile map explorer](./public/screenshots/mobile-map.png) |
 
 ## What It Does
 
 - Starts with a clickable world-region map instead of an empty search-only screen.
 - Lets users select regions such as Europe, Asia, Africa, Oceania, and the Americas.
-- Adds city pins, regional flow lines, climate highlights, and visual map metrics.
+- Adds city pins, live temperature badges, animated regional flow lines, climate highlights, and visual map metrics.
 - Shows curated quick cities for each selected region.
-- Provides smart city suggestions and popular city shortcuts for faster searching.
+- Provides smart city suggestions, keyboard navigation, recent searches, and popular city shortcuts for faster searching.
 - Supports shareable map states through `region` and `city` URL query parameters.
+- Changes the dashboard atmosphere based on the selected city's weather condition.
+- Presents selected-city weather in a premium console with local time, key metrics, and forecast chart.
 - Displays current temperature, humidity, wind, pressure, and feels-like values.
 - Visualizes the 5-day temperature and humidity forecast with Recharts.
 - Handles missing API keys, invalid cities, pending keys, and network errors with clear Turkish messages.
@@ -43,6 +45,14 @@ Repository: [github.com/noutrexx/weather-dashboard](https://github.com/noutrexx/
 | Data Visualization | Recharts |
 | Icons | Lucide React |
 | Tooling | ESLint, TypeScript project references |
+
+## Experience Details
+
+- **Map-first navigation:** users can browse by region before typing a city name.
+- **Live pin layer:** when an OpenWeatherMap key is available, regional city pins show fresh temperature badges.
+- **City console:** selecting a city turns the lower section into a focused weather console instead of a disconnected result card.
+- **Search memory:** the dashboard remembers recent city selections in local storage.
+- **Responsive density:** desktop keeps labels and temperature badges visible; mobile reduces map label density for readability.
 
 ## Setup
 
