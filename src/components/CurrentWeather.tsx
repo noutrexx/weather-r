@@ -1,6 +1,6 @@
 import { Droplets, Gauge, Wind } from 'lucide-react'
 
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type { CurrentWeatherResponse } from '../types/weather'
 import { cn } from '../utils/cn'
 
@@ -21,7 +21,7 @@ export function CurrentWeather({ weather, className }: CurrentWeatherProps) {
         'rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg backdrop-blur',
         className,
       )}
-      aria-label={tr.current.ariaLabel}
+      aria-label={en.current.ariaLabel}
     >
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -58,22 +58,22 @@ export function CurrentWeather({ weather, className }: CurrentWeatherProps) {
       <dl className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Metric
           icon={Droplets}
-          label={tr.current.humidity}
+          label={en.current.humidity}
           value={`${weather.main.humidity}%`}
         />
         <Metric
           icon={Wind}
-          label={tr.current.wind}
-          value={`${weather.wind.speed} ${tr.current.windUnit}`}
+          label={en.current.wind}
+          value={`${weather.wind.speed} ${en.current.windUnit}`}
         />
         <Metric
           icon={Gauge}
-          label={tr.current.pressure}
-          value={`${weather.main.pressure} ${tr.current.pressureUnit}`}
+          label={en.current.pressure}
+          value={`${weather.main.pressure} ${en.current.pressureUnit}`}
         />
         <Metric
           icon={Gauge}
-          label={tr.current.feelsLike}
+          label={en.current.feelsLike}
           value={`${Math.round(weather.main.feels_like)}°C`}
         />
       </dl>

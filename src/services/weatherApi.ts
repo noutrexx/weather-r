@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type {
   CurrentWeatherResponse,
   ForecastResponse,
@@ -18,7 +18,7 @@ const weatherClient = axios.create({
   params: {
     ...(isDev ? {} : { appid: apiKey }),
     units: 'metric',
-    lang: 'tr',
+    lang: 'en',
   },
 })
 
@@ -27,7 +27,7 @@ function assertApiKey(): void {
     return
   }
   if (!apiKey) {
-    throw new Error(tr.errors.missingApiKey)
+    throw new Error(en.errors.missingApiKey)
   }
 }
 

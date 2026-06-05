@@ -30,11 +30,11 @@ export type WorldRegion = {
 export const worldRegions: WorldRegion[] = [
   {
     id: 'north-america',
-    name: 'Kuzey Amerika',
-    description: 'Atlantik ve Pasifik kıyılarında hızlı hava değişimleri.',
-    climate: 'Kıyı fırtınaları, soğuk cepheler, sıcak dalgaları',
-    signal: 'Cephe geçişleri ve kıyı sistemleri sık takip edilir.',
-    highlights: ['Jet stream', 'Kıyı fırtınası', 'Sıcak dalgası'],
+    name: 'North America',
+    description: 'Fast-changing weather patterns across Atlantic and Pacific coasts.',
+    climate: 'Coastal storms, cold fronts, heat waves',
+    signal: 'Frontal systems and coastal pressure shifts are key signals.',
+    highlights: ['Jet stream', 'Coastal storms', 'Heat waves'],
     shape:
       'M89 118 C116 72 183 54 238 80 C274 97 294 126 285 155 C270 202 219 207 194 246 C171 282 115 274 103 230 C95 201 61 174 89 118 Z',
     cities: [
@@ -46,11 +46,11 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'south-america',
-    name: 'Güney Amerika',
-    description: 'And dağları ve tropikal kuşak arasında güçlü kontrast.',
-    climate: 'Tropikal yağış, yüksek rakım, kıyı nemi',
-    signal: 'Rakım farkı ve tropikal nem aynı ekranda izlenir.',
-    highlights: ['And etkisi', 'Tropikal yağış', 'Kıyı nemi'],
+    name: 'South America',
+    description: 'Strong contrast between the Andes and the tropical belt.',
+    climate: 'Tropical rainfall, high elevation, coastal humidity',
+    signal: 'Elevation shifts and tropical moisture define the regional picture.',
+    highlights: ['Andes effect', 'Tropical rain', 'Coastal humidity'],
     shape:
       'M257 333 C290 338 318 370 308 405 C300 434 285 458 292 492 C300 535 266 579 236 553 C211 531 228 489 204 459 C180 428 184 378 213 354 C225 344 238 332 257 333 Z',
     cities: [
@@ -62,15 +62,15 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'europe',
-    name: 'Avrupa',
-    description: 'Kısa mesafede değişen sıcaklık, rüzgar ve yağış desenleri.',
-    climate: 'Atlantik sistemleri, Akdeniz etkisi, karasal soğuk',
-    signal: 'Batıdan gelen sistemler şehir bazlı tahminleri hızla değiştirir.',
-    highlights: ['Atlantik akışı', 'Akdeniz etkisi', 'Karasal soğuk'],
+    name: 'Europe',
+    description: 'Short-distance changes in temperature, wind, and rainfall patterns.',
+    climate: 'Atlantic systems, Mediterranean influence, continental cold',
+    signal: 'Western systems can shift city-level forecasts quickly.',
+    highlights: ['Atlantic flow', 'Mediterranean effect', 'Continental cold'],
     shape:
       'M421 127 C455 102 511 105 538 134 C556 154 546 182 518 190 C489 198 459 184 430 201 C398 220 363 194 371 160 C375 145 390 134 421 127 Z',
     cities: [
-      { city: 'Istanbul', country: 'TR', label: 'İstanbul', query: 'Istanbul,TR', x: 548, y: 184 },
+      { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 548, y: 184 },
       { city: 'London', country: 'GB', label: 'London', query: 'London,GB', x: 400, y: 146 },
       { city: 'Berlin', country: 'DE', label: 'Berlin', query: 'Berlin,DE', x: 466, y: 126 },
       { city: 'Paris', country: 'FR', label: 'Paris', query: 'Paris,FR', x: 420, y: 176 },
@@ -79,11 +79,11 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'africa',
-    name: 'Afrika',
-    description: 'Sahra, savan ve kıyı bölgeleri arasında geniş hava ölçeği.',
-    climate: 'Sıcak dalgaları, muson yağışları, çöl rüzgarları',
-    signal: 'Sahra sıcakları ve kıyı nemi güçlü kontrast oluşturur.',
-    highlights: ['Sahra sıcakları', 'Muson hattı', 'Kıyı geçişi'],
+    name: 'Africa',
+    description: 'A wide weather scale across the Sahara, savanna, and coastal zones.',
+    climate: 'Heat waves, monsoon rainfall, desert winds',
+    signal: 'Saharan heat and coastal humidity create strong regional contrast.',
+    highlights: ['Saharan heat', 'Monsoon line', 'Coastal transition'],
     shape:
       'M444 233 C486 215 543 236 560 283 C578 333 536 367 533 415 C531 456 494 502 457 476 C429 456 437 413 408 386 C376 356 383 295 416 260 C424 251 431 241 444 233 Z',
     cities: [
@@ -95,11 +95,11 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'middle-east',
-    name: 'Orta Doğu',
-    description: 'Kurak hava, sıcak dalgaları ve geçiş mevsimi sistemleri.',
-    climate: 'Kuru sıcak, toz taşınımı, kıyı nemi',
-    signal: 'Sıcaklık, toz ve nem değişimleri şehir seçiminde öne çıkar.',
-    highlights: ['Toz taşınımı', 'Kuru sıcak', 'Kıyı nemi'],
+    name: 'Middle East',
+    description: 'Arid weather, heat waves, and transitional season systems.',
+    climate: 'Dry heat, dust transport, coastal humidity',
+    signal: 'Temperature, dust, and humidity shifts shape city-level decisions.',
+    highlights: ['Dust transport', 'Dry heat', 'Coastal humidity'],
     shape:
       'M547 205 C591 198 636 214 654 247 C669 274 646 306 611 306 C576 306 548 281 531 253 C518 232 524 211 547 205 Z',
     cities: [
@@ -111,11 +111,11 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'asia',
-    name: 'Asya',
-    description: 'Muson, karasal soğuk ve tropikal sistemlerin geniş alanı.',
-    climate: 'Muson yağışları, tayfunlar, karasal sıcaklık farkı',
-    signal: 'Muson hattı, tropikal sistemler ve şehir yoğunluğu birlikte izlenir.',
-    highlights: ['Muson hattı', 'Tayfun riski', 'Karasal fark'],
+    name: 'Asia',
+    description: 'A large field of monsoon, continental cold, and tropical systems.',
+    climate: 'Monsoon rainfall, typhoons, continental temperature contrast',
+    signal: 'Monsoon bands, tropical systems, and urban density are tracked together.',
+    highlights: ['Monsoon band', 'Typhoon risk', 'Continental contrast'],
     shape:
       'M612 112 C689 74 814 100 878 160 C927 205 921 289 855 319 C799 344 754 310 707 339 C665 365 610 340 604 293 C599 251 563 226 576 184 C582 151 589 126 612 112 Z',
     cities: [
@@ -128,11 +128,11 @@ export const worldRegions: WorldRegion[] = [
   },
   {
     id: 'oceania',
-    name: 'Okyanusya',
-    description: 'Ada iklimleri, deniz rüzgarları ve güney yarımküre cepheleri.',
-    climate: 'Okyanus etkisi, kıyı rüzgarı, tropikal nem',
-    signal: 'Deniz etkisi şehir tahminlerinde hızlı hissedilir.',
-    highlights: ['Okyanus etkisi', 'Kıyı rüzgarı', 'Tropikal nem'],
+    name: 'Oceania',
+    description: 'Island climates, sea winds, and Southern Hemisphere fronts.',
+    climate: 'Ocean influence, coastal winds, tropical humidity',
+    signal: 'Marine influence is quickly reflected in city forecasts.',
+    highlights: ['Ocean effect', 'Coastal winds', 'Tropical humidity'],
     shape:
       'M806 430 C845 407 895 418 918 452 C942 489 903 523 858 510 C822 499 773 471 806 430 Z',
     cities: [
@@ -145,9 +145,9 @@ export const worldRegions: WorldRegion[] = [
 ]
 
 export const popularCities: CityOption[] = [
-  { city: 'Istanbul', country: 'TR', label: 'İstanbul', query: 'Istanbul,TR', x: 548, y: 184 },
+  { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 548, y: 184 },
   { city: 'Ankara', country: 'TR', label: 'Ankara', query: 'Ankara,TR', x: 536, y: 188 },
-  { city: 'Izmir', country: 'TR', label: 'İzmir', query: 'Izmir,TR', x: 512, y: 190 },
+  { city: 'Izmir', country: 'TR', label: 'Izmir', query: 'Izmir,TR', x: 512, y: 190 },
   { city: 'London', country: 'GB', label: 'London', query: 'London,GB', x: 400, y: 146 },
   { city: 'New York', country: 'US', label: 'New York', query: 'New York,US', x: 245, y: 168 },
   { city: 'Tokyo', country: 'JP', label: 'Tokyo', query: 'Tokyo,JP', x: 858, y: 210 },

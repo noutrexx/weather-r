@@ -4,7 +4,7 @@ import type { KeyboardEvent } from 'react'
 
 import type { CityOption } from '../data/worldRegions'
 import { useDebounce } from '../hooks/useDebounce'
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import { cn } from '../utils/cn'
 
 interface SearchBarProps {
@@ -22,7 +22,7 @@ const DEBOUNCE_MS = 450
 
 function normalize(value: string) {
   return value
-    .toLocaleLowerCase('tr-TR')
+    .toLocaleLowerCase('en-US')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
 }
@@ -118,13 +118,13 @@ export function SearchBar({
           onChange={(event) => onValueChange(event.target.value)}
           onFocus={() => setIsFocused(true)}
           onKeyDown={handleKeyDown}
-          placeholder={tr.search.placeholder}
-          aria-label={tr.search.ariaLabel}
+          placeholder={en.search.placeholder}
+          aria-label={en.search.ariaLabel}
           className="h-14 w-full rounded-2xl border border-slate-700/80 bg-slate-950/80 pr-12 pl-12 text-base text-slate-100 shadow-2xl shadow-sky-950/20 outline-none transition placeholder:text-slate-500 focus:border-sky-400/70 focus:ring-4 focus:ring-sky-400/15"
         />
         {value && (
           <button
-            aria-label={tr.search.clear}
+            aria-label={en.search.clear}
             className="absolute top-1/2 right-3 grid size-8 -translate-y-1/2 place-items-center rounded-full text-slate-400 transition hover:bg-slate-800 hover:text-white"
             onClick={handleClear}
             type="button"
@@ -136,7 +136,7 @@ export function SearchBar({
         {showSuggestions && (
           <div className="absolute top-[calc(100%+0.5rem)] right-0 left-0 z-30 overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl shadow-black/40">
             <p className="px-4 pt-3 pb-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-              {tr.search.suggestions}
+              {en.search.suggestions}
             </p>
             <div className="max-h-72 overflow-auto pb-2">
               {filteredSuggestions.map((city, index) => (
@@ -168,7 +168,7 @@ export function SearchBar({
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <span className="mr-1 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-          {recentCities.length > 0 ? 'Son aramalar' : tr.search.popular}
+          {recentCities.length > 0 ? 'Recent searches' : en.search.popular}
         </span>
         {quickCities.map((city) => (
           <button

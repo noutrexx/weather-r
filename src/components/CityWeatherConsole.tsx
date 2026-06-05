@@ -1,6 +1,6 @@
 import { Clock3, CloudSun, Droplets, Gauge, Wind } from 'lucide-react'
 
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type { CurrentWeatherResponse, ForecastResponse } from '../types/weather'
 import { cn } from '../utils/cn'
 import { WeatherChart } from './WeatherChart'
@@ -12,7 +12,7 @@ interface CityWeatherConsoleProps {
 
 function formatLocalTime(timezone: number) {
   const localTimestamp = Date.now() + timezone * 1000
-  return new Intl.DateTimeFormat('tr-TR', {
+  return new Intl.DateTimeFormat('en-US', {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: 'UTC',
@@ -73,22 +73,22 @@ export function CityWeatherConsole({
           <div className="mt-6 grid grid-cols-2 gap-3">
             <ConsoleMetric
               icon={Droplets}
-              label={tr.current.humidity}
+              label={en.current.humidity}
               value={`${current.main.humidity}%`}
             />
             <ConsoleMetric
               icon={Wind}
-              label={tr.current.wind}
-              value={`${current.wind.speed} ${tr.current.windUnit}`}
+              label={en.current.wind}
+              value={`${current.wind.speed} ${en.current.windUnit}`}
             />
             <ConsoleMetric
               icon={Gauge}
-              label={tr.current.feelsLike}
+              label={en.current.feelsLike}
               value={`${Math.round(current.main.feels_like)}°C`}
             />
             <ConsoleMetric
               icon={Clock3}
-              label="Yerel saat"
+              label="Local time"
               value={formatLocalTime(current.timezone)}
             />
           </div>

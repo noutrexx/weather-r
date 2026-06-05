@@ -16,7 +16,7 @@ import {
 import { useFetch } from './hooks/useFetch'
 import { useRecentCities } from './hooks/useRecentCities'
 import { useRegionWeather } from './hooks/useRegionWeather'
-import { tr } from './i18n/tr'
+import { en } from './i18n/en'
 import { fetchCurrentWeather, fetchForecast } from './services/weatherApi'
 import { getWeatherThemeStyle } from './utils/weatherTheme'
 
@@ -124,6 +124,7 @@ function App() {
   const isLoading = enabled && (loadingCurrent || loadingForecast)
   const error = currentError ?? forecastError
   const themeStyle = getWeatherThemeStyle(current?.weather[0]?.main)
+
   return (
     <div className="min-h-svh overflow-x-hidden bg-slate-950 text-slate-100 transition-colors">
       <div className="mx-auto flex min-h-svh max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
@@ -139,10 +140,10 @@ function App() {
             </span>
             <div>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                {tr.app.title}
+                {en.app.title}
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
-                {tr.app.subtitle}
+                {en.app.subtitle}
               </p>
             </div>
           </div>
@@ -161,15 +162,15 @@ function App() {
         <section className="grid gap-3 sm:grid-cols-3">
           <HeroMetric
             icon={MapPinned}
-            label="Harita kapsamı"
-            value={`${worldRegions.length} bölge`}
+            label="Map coverage"
+            value={`${worldRegions.length} regions`}
           />
           <HeroMetric
             icon={SearchCheck}
-            label="Hızlı arama"
-            value={`${cityOptions.length} şehir`}
+            label="Fast search"
+            value={`${cityOptions.length} cities`}
           />
-          <HeroMetric icon={BarChart3} label="Tahmin" value="5 günlük grafik" />
+          <HeroMetric icon={BarChart3} label="Forecast" value="5-day chart" />
         </section>
 
         <WorldRegionMap
@@ -184,7 +185,7 @@ function App() {
 
         {!enabled && (
           <section className="rounded-2xl border border-dashed border-slate-800 bg-slate-900/40 px-5 py-8 text-center">
-            <p className="text-sm text-slate-400">{tr.app.minChars}</p>
+            <p className="text-sm text-slate-400">{en.app.minChars}</p>
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
               {selectedRegion.name}: {selectedRegion.climate}
             </p>

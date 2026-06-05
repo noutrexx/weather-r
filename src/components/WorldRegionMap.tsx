@@ -1,7 +1,7 @@
 import { Activity, CloudSun, Compass, MapPin, Waves } from 'lucide-react'
 
 import type { CityOption, RegionId, WorldRegion } from '../data/worldRegions'
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type { CurrentWeatherResponse } from '../types/weather'
 import { cn } from '../utils/cn'
 
@@ -38,10 +38,10 @@ export function WorldRegionMap({
             <div>
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-sky-200">
                 <CloudSun className="size-4" aria-hidden />
-                {tr.map.eyebrow}
+                {en.map.eyebrow}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-white">
-                {tr.map.title}
+                {en.map.title}
               </h2>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -60,7 +60,7 @@ export function WorldRegionMap({
             className="relative z-10 h-[390px] w-full"
             viewBox="0 0 1000 620"
             role="img"
-            aria-label={tr.map.ariaLabel}
+            aria-label={en.map.ariaLabel}
           >
             <defs>
               <filter
@@ -132,7 +132,7 @@ export function WorldRegionMap({
 
               return (
                 <path
-                  aria-label={`${region.name} bölgesini seç`}
+                  aria-label={`Select ${region.name} region`}
                   className={cn(
                     'cursor-pointer stroke-slate-950/80 stroke-[3] transition duration-300',
                     isSelected
@@ -170,25 +170,25 @@ export function WorldRegionMap({
           <div className="relative z-10 mt-1 grid gap-3 sm:grid-cols-3">
             <MapMetric
               icon={Compass}
-              label="Bölge odağı"
+              label="Region focus"
               value={selectedRegion.name}
             />
             <MapMetric
               icon={Activity}
-              label="Hava sinyali"
+              label="Weather signal"
               value={selectedRegion.highlights[0]}
             />
             <MapMetric
               icon={Waves}
-              label="Keşif noktası"
-              value={`${selectedRegion.cities.length} şehir`}
+              label="Explorer points"
+              value={`${selectedRegion.cities.length} cities`}
             />
           </div>
         </div>
 
         <aside className="border-t border-slate-800 bg-slate-900/85 p-5 lg:border-t-0 lg:border-l">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
-            {tr.map.selectedRegion}
+            {en.map.selectedRegion}
           </p>
           <h3 className="mt-2 text-2xl font-semibold text-white">
             {selectedRegion.name}
@@ -198,14 +198,14 @@ export function WorldRegionMap({
           </p>
 
           <div className="mt-4 grid gap-3">
-            <PanelCard label={tr.map.climateProfile} value={selectedRegion.climate} />
-            <PanelCard label="Canlı okuma" value={selectedRegion.signal} />
+            <PanelCard label={en.map.climateProfile} value={selectedRegion.climate} />
+            <PanelCard label="Live readout" value={selectedRegion.signal} />
           </div>
 
           <div className="mt-5">
             <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-200">
               <MapPin className="size-4 text-sky-300" aria-hidden />
-              {tr.map.quickCities}
+              {en.map.quickCities}
             </p>
             <div className="grid gap-2">
               {selectedRegion.cities.map((city) => {

@@ -11,7 +11,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type { ForecastResponse } from '../types/weather'
 import { cn } from '../utils/cn'
 import { toForecastChartData } from '../utils/forecast'
@@ -37,10 +37,10 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
         'rounded-2xl border border-slate-800 bg-slate-900/60 p-4 shadow-lg backdrop-blur sm:p-6',
         className,
       )}
-      aria-label={tr.chart.ariaLabel}
+      aria-label={en.chart.ariaLabel}
     >
       <h2 className="mb-4 text-lg font-medium text-slate-100">
-        {tr.chart.title}
+        {en.chart.title}
       </h2>
       <div className="h-72 w-full min-h-[288px] sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
@@ -88,8 +88,8 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
                 const numeric =
                   typeof value === 'number' ? value : Number(value ?? 0)
                 const key = String(name)
-                if (key === 'temp') return [`${numeric}°C`, tr.chart.temperature]
-                if (key === 'humidity') return [`${numeric}%`, tr.chart.humidity]
+                if (key === 'temp') return [`${numeric}°C`, en.chart.temperature]
+                if (key === 'humidity') return [`${numeric}%`, en.chart.humidity]
                 return [numeric, key]
               }}
             />
@@ -98,7 +98,7 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
               yAxisId="temp"
               type="monotone"
               dataKey="temp"
-              name={tr.chart.temperature}
+              name={en.chart.temperature}
               stroke="#38bdf8"
               fill="url(#tempGradient)"
               strokeWidth={2}
@@ -107,7 +107,7 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
               yAxisId="humidity"
               type="monotone"
               dataKey="humidity"
-              name={tr.chart.humidity}
+              name={en.chart.humidity}
               stroke="#a78bfa"
               strokeWidth={2}
               dot={{ fill: '#a78bfa', r: 3 }}

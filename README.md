@@ -33,7 +33,7 @@ Repository: [github.com/noutrexx/weather-dashboard](https://github.com/noutrexx/
 - Presents selected-city weather in a premium console with local time, key metrics, and forecast chart.
 - Displays current temperature, humidity, wind, pressure, and feels-like values.
 - Visualizes the 5-day temperature and humidity forecast with Recharts.
-- Handles missing API keys, invalid cities, pending keys, and network errors with clear Turkish messages.
+- Handles missing API keys, invalid cities, pending keys, and network errors with clear English messages.
 
 ## Tech Stack
 
@@ -112,7 +112,7 @@ src/
   components/  Search, map, weather cards, alerts, charts
   data/        World-region and city-option metadata
   hooks/       Fetching and debounce hooks
-  i18n/        Turkish UI copy and API message translation
+  i18n/        English UI copy and API message translation
   services/    OpenWeatherMap client
   types/       Weather API response types
   utils/       Forecast, error, and class-name helpers
@@ -121,7 +121,7 @@ src/
 ## Production Notes
 
 - New OpenWeatherMap API keys can take 10-120 minutes to become active.
-- The Vite proxy injects API key, units, and Turkish language parameters during local development.
+- The Vite proxy injects API key, metric units, and English language parameters during local development.
 - For production deployments, define `VITE_OPENWEATHER_API_KEY` in the hosting platform environment variables.
 - The current chart bundle includes Recharts; code-splitting can be added later if stricter bundle budgets are needed.
 

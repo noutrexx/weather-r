@@ -19,7 +19,7 @@ function createOwmProxy(apiKey: string): Record<string, ProxyOptions> {
 
           if (!params.has('appid')) params.set('appid', apiKey)
           if (!params.has('units')) params.set('units', 'metric')
-          if (!params.has('lang')) params.set('lang', 'tr')
+          if (!params.has('lang')) params.set('lang', 'en')
 
           const pathname = hasQuery ? proxyReq.path.split('?')[0] : proxyReq.path
           proxyReq.path = `${pathname}?${params.toString()}`
@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
 
   if (mode === 'development' && !apiKey) {
     console.warn(
-      '[weather-dashboard] Uyarı: .env içinde VITE_OPENWEATHER_API_KEY bulunamadı.',
+      '[weather-dashboard] Warning: VITE_OPENWEATHER_API_KEY was not found in .env.',
     )
   }
 
