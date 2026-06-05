@@ -48,6 +48,7 @@
 }
 
 @media (max-width: 640px) {
+  .city-pin-copy,
   .city-pin-label,
   .city-pin-badge {
     display: none;

@@ -134,7 +134,7 @@ export function WorldRegionMap({
                 <path
                   aria-label={`Select ${region.name} region`}
                   className={cn(
-                    'cursor-pointer stroke-slate-950/80 stroke-[3] transition duration-300',
+                    'cursor-pointer stroke-slate-950/80 stroke-[3] transition duration-300 [transform-box:fill-box] [transform-origin:center]',
                     isSelected
                       ? 'fill-sky-300'
                       : 'fill-slate-700/90 hover:fill-sky-500',
@@ -150,6 +150,7 @@ export function WorldRegionMap({
                     }
                   }}
                   role="button"
+                  style={{ transform: isSelected ? 'scale(1.08)' : undefined }}
                   tabIndex={0}
                 />
               )
@@ -257,6 +258,9 @@ function CityPin({
     : isLoading
       ? '...'
       : city.country
+  const labelWidth = Math.max(city.label.length * 8 + 24, badge.length * 7 + 24, 64)
+  const labelX = city.x + (city.labelDx ?? 16)
+  const labelTop = city.y + (city.labelDy ?? -18)
 
   return (
     <g
@@ -292,26 +296,46 @@ function CityPin({
         stroke={isSelected ? '#fde68a' : '#7dd3fc'}
         strokeWidth="3"
       />
-      <text
-        className="city-pin-label"
-        fill={isSelected ? '#fef3c7' : '#cbd5e1'}
-        fontSize="18"
-        fontWeight="700"
-        x={city.x + 16}
-        y={city.y + 6}
-      >
-        {city.label}
-      </text>
-      <text
-        className="city-pin-badge"
-        fill={isSelected ? '#fde68a' : '#67e8f9'}
-        fontSize="15"
-        fontWeight="800"
-        x={city.x + 16}
-        y={city.y + 25}
-      >
-        {badge}
-      </text>
+      <g className="city-pin-copy">
+        <rect
+          fill={isSelected ? 'rgba(15,23,42,0.74)' : 'rgba(2,6,23,0.58)'}
+          height="38"
+          rx={isSelected ? 3 : 0}
+          stroke={isSelected ? 'rgba(250,204,21,0.55)' : 'rgba(125,211,252,0.18)'}
+          strokeWidth="1"
+          width={labelWidth}
+          x={labelX - 6}
+          y={labelTop}
+        />
+        <text
+          className="city-pin-label"
+          fill={isSelected ? '#fef3c7' : '#f8fafc'}
+          fontSize="14"
+          fontWeight="800"
+          paintOrder="stroke fill"
+          stroke="rgba(2,6,23,0.9)"
+          strokeLinejoin="round"
+          strokeWidth="3"
+          x={labelX}
+          y={labelTop + 17}
+        >
+          {city.label}
+        </text>
+        <text
+          className="city-pin-badge"
+          fill={isSelected ? '#fde68a' : '#67e8f9'}
+          fontSize="11"
+          fontWeight="900"
+          paintOrder="stroke fill"
+          stroke="rgba(2,6,23,0.9)"
+          strokeLinejoin="round"
+          strokeWidth="3"
+          x={labelX}
+          y={labelTop + 31}
+        >
+          {badge}
+        </text>
+      </g>
     </g>
   )
 }
