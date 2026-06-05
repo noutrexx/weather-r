@@ -70,7 +70,9 @@ export const worldRegions: WorldRegion[] = [
     shape:
       'M421 127 C455 102 511 105 538 134 C556 154 546 182 518 190 C489 198 459 184 430 201 C398 220 363 194 371 160 C375 145 390 134 421 127 Z',
     cities: [
-      { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 548, y: 184 },
+      { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 520, y: 176 },
+      { city: 'Ankara', country: 'TR', label: 'Ankara', query: 'Ankara,TR', x: 508, y: 164 },
+      { city: 'Izmir', country: 'TR', label: 'Izmir', query: 'Izmir,TR', x: 500, y: 188 },
       { city: 'London', country: 'GB', label: 'London', query: 'London,GB', x: 400, y: 146 },
       { city: 'Berlin', country: 'DE', label: 'Berlin', query: 'Berlin,DE', x: 466, y: 126 },
       { city: 'Paris', country: 'FR', label: 'Paris', query: 'Paris,FR', x: 420, y: 176 },
@@ -121,7 +123,7 @@ export const worldRegions: WorldRegion[] = [
     cities: [
       { city: 'Tokyo', country: 'JP', label: 'Tokyo', query: 'Tokyo,JP', x: 858, y: 210 },
       { city: 'Seoul', country: 'KR', label: 'Seoul', query: 'Seoul,KR', x: 808, y: 198 },
-      { city: 'Singapore', country: 'SG', label: 'Singapore', query: 'Singapore,SG', x: 738, y: 350 },
+      { city: 'Singapore', country: 'SG', label: 'Singapore', query: 'Singapore,SG', x: 740, y: 326 },
       { city: 'Bangkok', country: 'TH', label: 'Bangkok', query: 'Bangkok,TH', x: 724, y: 305 },
       { city: 'Mumbai', country: 'IN', label: 'Mumbai', query: 'Mumbai,IN', x: 652, y: 288 },
     ],
@@ -138,16 +140,16 @@ export const worldRegions: WorldRegion[] = [
     cities: [
       { city: 'Sydney', country: 'AU', label: 'Sydney', query: 'Sydney,AU', x: 888, y: 472 },
       { city: 'Melbourne', country: 'AU', label: 'Melbourne', query: 'Melbourne,AU', x: 858, y: 494 },
-      { city: 'Auckland', country: 'NZ', label: 'Auckland', query: 'Auckland,NZ', x: 936, y: 486 },
+      { city: 'Auckland', country: 'NZ', label: 'Auckland', query: 'Auckland,NZ', x: 912, y: 486 },
       { city: 'Perth', country: 'AU', label: 'Perth', query: 'Perth,AU', x: 796, y: 468 },
     ],
   },
 ]
 
 export const popularCities: CityOption[] = [
-  { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 548, y: 184 },
-  { city: 'Ankara', country: 'TR', label: 'Ankara', query: 'Ankara,TR', x: 536, y: 188 },
-  { city: 'Izmir', country: 'TR', label: 'Izmir', query: 'Izmir,TR', x: 512, y: 190 },
+  { city: 'Istanbul', country: 'TR', label: 'Istanbul', query: 'Istanbul,TR', x: 520, y: 176 },
+  { city: 'Ankara', country: 'TR', label: 'Ankara', query: 'Ankara,TR', x: 508, y: 164 },
+  { city: 'Izmir', country: 'TR', label: 'Izmir', query: 'Izmir,TR', x: 500, y: 188 },
   { city: 'London', country: 'GB', label: 'London', query: 'London,GB', x: 400, y: 146 },
   { city: 'New York', country: 'US', label: 'New York', query: 'New York,US', x: 245, y: 168 },
   { city: 'Tokyo', country: 'JP', label: 'Tokyo', query: 'Tokyo,JP', x: 858, y: 210 },
