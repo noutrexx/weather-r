@@ -18,21 +18,21 @@ export function CurrentWeather({ weather, className }: CurrentWeatherProps) {
   return (
     <section
       className={cn(
-        'rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg backdrop-blur',
+        'rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg backdrop-blur',
         className,
       )}
       aria-label={tr.current.ariaLabel}
     >
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-medium tracking-wide text-zinc-400 uppercase">
+          <p className="text-sm font-medium tracking-wide text-slate-400 uppercase">
             {weather.sys.country}
           </p>
-          <h1 className="text-3xl font-semibold text-zinc-50 sm:text-4xl">
+          <h2 className="text-3xl font-semibold text-slate-50 sm:text-4xl">
             {weather.name}
-          </h1>
+          </h2>
           {condition && (
-            <p className="mt-1 capitalize text-zinc-300">
+            <p className="mt-1 capitalize text-slate-300">
               {condition.description}
             </p>
           )}
@@ -48,9 +48,9 @@ export function CurrentWeather({ weather, className }: CurrentWeatherProps) {
               className="size-24"
             />
           )}
-          <p className="text-5xl font-light text-zinc-50 tabular-nums">
+          <p className="text-5xl font-light text-slate-50 tabular-nums">
             {Math.round(weather.main.temp)}
-            <span className="text-3xl text-zinc-400">°C</span>
+            <span className="text-3xl text-slate-400">°C</span>
           </p>
         </div>
       </div>
@@ -91,12 +91,12 @@ function Metric({
   value: string
 }) {
   return (
-    <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-3">
-      <dt className="flex items-center gap-2 text-xs text-zinc-400">
+    <div className="rounded-xl border border-slate-800/80 bg-slate-950/50 p-3">
+      <dt className="flex items-center gap-2 text-xs text-slate-400">
         <Icon className="size-4 shrink-0 text-sky-400" aria-hidden />
         {label}
       </dt>
-      <dd className="mt-1 text-lg font-medium text-zinc-100">{value}</dd>
+      <dd className="mt-1 text-lg font-medium text-slate-100">{value}</dd>
     </div>
   )
 }

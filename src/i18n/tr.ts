@@ -1,18 +1,30 @@
 export const tr = {
   app: {
-    title: 'Hava Durumu',
+    title: 'Global Weather Explorer',
     subtitle:
-      'Güncel koşullar ve 5 günlük tahmin için bir şehir arayın.',
-    minChars: 'Aramak için en az 2 karakter yazın.',
+      'Dünya haritasından bölge seçin, şehirleri hızlıca keşfedin ve 5 günlük hava tahminini tek ekranda izleyin.',
+    minChars:
+      'Başlamak için haritadan bir bölge seçin ya da arama kutusuna en az 2 karakter yazın.',
   },
   search: {
-    placeholder: 'Şehir ara (ör. İstanbul, Ankara)…',
+    placeholder: 'Şehir ara (İstanbul, Tokyo, New York)...',
     ariaLabel: 'Şehir ara',
+    suggestions: 'Önerilen şehirler',
+    popular: 'Popüler şehirler',
+    clear: 'Aramayı temizle',
+  },
+  map: {
+    eyebrow: 'Dünya haritası',
+    title: 'Bölge seç, şehirleri hızlıca keşfet.',
+    selectedRegion: 'Seçili bölge',
+    climateProfile: 'İklim profili',
+    quickCities: 'Hızlı şehirler',
+    ariaLabel: 'Tıklanabilir dünya bölge haritası',
   },
   current: {
     ariaLabel: 'Güncel hava durumu',
     humidity: 'Nem',
-    wind: 'Rüzgâr',
+    wind: 'Rüzgar',
     pressure: 'Basınç',
     feelsLike: 'Hissedilen',
     windUnit: 'm/sn',
@@ -30,9 +42,9 @@ export const tr = {
   errors: {
     cityNotFound: 'Şehir bulunamadı. Yazımı kontrol edip tekrar deneyin.',
     invalidApiKey:
-      'OpenWeatherMap bu API anahtarını kabul etmiyor. Panelden yeni anahtar oluşturun, .env dosyasına yapıştırın ve 10–120 dakika bekleyin.',
+      'OpenWeatherMap bu API anahtarını kabul etmiyor. Panelden yeni anahtar oluşturun, .env dosyasına yapıştırın ve 10-120 dakika bekleyin.',
     apiKeyPending:
-      'API anahtarınız henüz aktif değil. OpenWeatherMap’te yeni anahtarlar genelde 10 dakika ile 2 saat içinde açılır; sonra sayfayı yenileyin.',
+      'API anahtarınız henüz aktif değil. OpenWeatherMap yeni anahtarları genelde 10 dakika ile 2 saat içinde açar; sonra sayfayı yenileyin.',
     networkError:
       'Ağ hatası. İnternet bağlantınızı kontrol edin veya geliştirme sunucusunu yeniden başlatın (npm run dev).',
     requestFailed: 'İstek başarısız oldu. Lütfen tekrar deneyin.',

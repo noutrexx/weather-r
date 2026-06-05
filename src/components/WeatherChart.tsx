@@ -34,12 +34,12 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
   return (
     <section
       className={cn(
-        'rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 shadow-lg backdrop-blur sm:p-6',
+        'rounded-2xl border border-slate-800 bg-slate-900/60 p-4 shadow-lg backdrop-blur sm:p-6',
         className,
       )}
       aria-label={tr.chart.ariaLabel}
     >
-      <h2 className="mb-4 text-lg font-medium text-zinc-100">
+      <h2 className="mb-4 text-lg font-medium text-slate-100">
         {tr.chart.title}
       </h2>
       <div className="h-72 w-full min-h-[288px] sm:h-80">
@@ -54,48 +54,46 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
                 <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#3f3f46" strokeDasharray="3 3" />
+            <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
-              tick={{ fill: '#a1a1aa', fontSize: 12 }}
-              axisLine={{ stroke: '#52525b' }}
-              tickLine={{ stroke: '#52525b' }}
+              tick={{ fill: '#94a3b8', fontSize: 12 }}
+              axisLine={{ stroke: '#475569' }}
+              tickLine={{ stroke: '#475569' }}
             />
             <YAxis
               yAxisId="temp"
-              tick={{ fill: '#a1a1aa', fontSize: 12 }}
-              axisLine={{ stroke: '#52525b' }}
-              tickLine={{ stroke: '#52525b' }}
+              tick={{ fill: '#94a3b8', fontSize: 12 }}
+              axisLine={{ stroke: '#475569' }}
+              tickLine={{ stroke: '#475569' }}
               unit="°C"
             />
             <YAxis
               yAxisId="humidity"
               orientation="right"
-              tick={{ fill: '#a1a1aa', fontSize: 12 }}
-              axisLine={{ stroke: '#52525b' }}
-              tickLine={{ stroke: '#52525b' }}
+              tick={{ fill: '#94a3b8', fontSize: 12 }}
+              axisLine={{ stroke: '#475569' }}
+              tickLine={{ stroke: '#475569' }}
               unit="%"
               domain={[0, 100]}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#18181b',
-                border: '1px solid #3f3f46',
+                backgroundColor: '#020617',
+                border: '1px solid #334155',
                 borderRadius: '0.75rem',
-                color: '#f4f4f5',
+                color: '#f8fafc',
               }}
               formatter={(value, name) => {
                 const numeric =
                   typeof value === 'number' ? value : Number(value ?? 0)
                 const key = String(name)
-                if (key === 'temp')
-                  return [`${numeric}°C`, tr.chart.temperature]
-                if (key === 'humidity')
-                  return [`${numeric}%`, tr.chart.humidity]
+                if (key === 'temp') return [`${numeric}°C`, tr.chart.temperature]
+                if (key === 'humidity') return [`${numeric}%`, tr.chart.humidity]
                 return [numeric, key]
               }}
             />
-            <Legend wrapperStyle={{ color: '#d4d4d8', paddingTop: 12 }} />
+            <Legend wrapperStyle={{ color: '#cbd5e1', paddingTop: 12 }} />
             <Area
               yAxisId="temp"
               type="monotone"
