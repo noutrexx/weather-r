@@ -33,5 +33,10 @@ export function useRecentCities() {
     })
   }, [])
 
-  return { recentCities, addRecentCity }
+  const clearRecentCities = useCallback(() => {
+    window.localStorage.removeItem(STORAGE_KEY)
+    setRecentCities([])
+  }, [])
+
+  return { recentCities, addRecentCity, clearRecentCities }
 }
