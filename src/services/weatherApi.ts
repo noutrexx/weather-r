@@ -51,7 +51,7 @@ export async function fetchForecast(city: string): Promise<ForecastResponse> {
 
   try {
     const { data } = await weatherClient.get<ForecastResponse>('/forecast', {
-      params: { q: city.trim() },
+      params: { q: city.trim(), cnt: 40 },
     })
     return data
   } catch (error) {

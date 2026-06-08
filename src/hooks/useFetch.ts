@@ -25,11 +25,9 @@ export function useFetch<T>(
 
   useEffect(() => {
     if (!enabled) {
-      queueMicrotask(() => {
-        setData(null)
-        setError(null)
-        setIsLoading(false)
-      })
+      setData(null)
+      setError(null)
+      setIsLoading(false)
       return
     }
 

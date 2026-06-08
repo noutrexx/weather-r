@@ -1,4 +1,4 @@
-import { Droplets, Gauge, Wind } from 'lucide-react'
+import { Droplets, Gauge, Thermometer, Wind } from 'lucide-react'
 
 import { tr } from '../i18n/tr'
 import type { CurrentWeatherResponse } from '../types/weather'
@@ -72,7 +72,7 @@ export function CurrentWeather({ weather, className }: CurrentWeatherProps) {
           value={`${weather.main.pressure} ${tr.current.pressureUnit}`}
         />
         <Metric
-          icon={Gauge}
+          icon={Thermometer}
           label={tr.current.feelsLike}
           value={`${Math.round(weather.main.feels_like)}°C`}
         />
