@@ -120,9 +120,10 @@ src/
 
 ## Production Notes
 
-- New OpenWeatherMap API keys can take 10-120 minutes to become active.
-- The Vite proxy injects API key, metric units, and English language parameters during local development.
-- For production deployments, define `VITE_OPENWEATHER_API_KEY` in the hosting platform environment variables.
+- New OpenWeatherMap API keys can take 10–120 minutes to become active.
+- The Vite dev proxy injects the API key, metric units, and English language parameters so the key never appears in the browser bundle during development.
+- For production deployments, define `VITE_OPENWEATHER_API_KEY` in your hosting platform's environment variables (Vercel, Netlify, etc.).
+- The app defaults to Celsius (`units=metric`). Changing to Fahrenheit requires updating the `units` param in `weatherApi.ts` and the unit labels in `i18n/en.ts`.
 - The current chart bundle includes Recharts; code-splitting can be added later if stricter bundle budgets are needed.
 
 ## License
