@@ -37,6 +37,8 @@ export function toForecastChartData(
         date,
         label: formatDateLabel(date),
         temp: Math.round(temp * 10) / 10,
+        tempMin: Math.round(Math.min(...temps) * 10) / 10,
+        tempMax: Math.round(Math.max(...temps) * 10) / 10,
         humidity: Math.round(humidity),
       }
     })

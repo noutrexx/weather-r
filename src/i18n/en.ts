@@ -33,7 +33,9 @@ export const en = {
   chart: {
     title: '5-Day Forecast',
     ariaLabel: '5-day forecast chart',
-    temperature: 'Temperature',
+    temperature: 'Avg temp',
+    tempMin: 'Min temp',
+    tempMax: 'Max temp',
     humidity: 'Humidity',
   },
   loading: {

@@ -111,6 +111,8 @@ export interface ForecastChartPoint {
   date: string
   label: string
   temp: number
+  tempMin: number
+  tempMax: number
   humidity: number
 }
 

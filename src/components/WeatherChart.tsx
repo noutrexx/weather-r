@@ -89,6 +89,8 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
                   typeof value === 'number' ? value : Number(value ?? 0)
                 const key = String(name)
                 if (key === 'temp') return [`${numeric}°C`, en.chart.temperature]
+                if (key === 'tempMin') return [`${numeric}°C`, en.chart.tempMin]
+                if (key === 'tempMax') return [`${numeric}°C`, en.chart.tempMax]
                 if (key === 'humidity') return [`${numeric}%`, en.chart.humidity]
                 return [numeric, key]
               }}
@@ -97,11 +99,33 @@ export function WeatherChart({ forecast, className }: WeatherChartProps) {
             <Area
               yAxisId="temp"
               type="monotone"
+              dataKey="tempMax"
+              name={en.chart.tempMax}
+              stroke="#f97316"
+              fill="url(#tempGradient)"
+              strokeWidth={1.5}
+              strokeDasharray="4 2"
+              dot={false}
+            />
+            <Area
+              yAxisId="temp"
+              type="monotone"
               dataKey="temp"
               name={en.chart.temperature}
               stroke="#38bdf8"
               fill="url(#tempGradient)"
               strokeWidth={2}
+            />
+            <Area
+              yAxisId="temp"
+              type="monotone"
+              dataKey="tempMin"
+              name={en.chart.tempMin}
+              stroke="#818cf8"
+              fill="none"
+              strokeWidth={1.5}
+              strokeDasharray="4 2"
+              dot={false}
             />
             <Line
               yAxisId="humidity"
