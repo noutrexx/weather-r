@@ -1,4 +1,4 @@
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import { cn } from '../utils/cn'
 
 export function LoadingSkeleton({ className }: { className?: string }) {
@@ -6,7 +6,7 @@ export function LoadingSkeleton({ className }: { className?: string }) {
     <div
       className={cn('animate-pulse space-y-6', className)}
       role="status"
-      aria-label={tr.loading.ariaLabel}
+      aria-label={en.loading.ariaLabel}
     >
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6">
         <div className="h-4 w-24 rounded bg-zinc-700" />

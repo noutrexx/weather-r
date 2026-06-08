@@ -1,86 +1,100 @@
-# Weather Dashboard
+# Global Weather Explorer
 
-A weather dashboard built with React, TypeScript, and Vite. When a city search is performed, current weather conditions, key metrics, and a 5-day temperature and humidity chart are displayed via the OpenWeatherMap API.
+Interactive weather dashboard with a world-map first screen, regional discovery, live city pins, smart search, weather-aware atmosphere, current conditions, and a 5-day forecast console powered by OpenWeatherMap.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)
+![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-API-EB6E4B?logo=openweathermap&logoColor=white)
+![MIT License](https://img.shields.io/badge/License-MIT-green)
 
-Repository: [github.com/noutrexx/weather-r](https://github.com/noutrexx/weather-r)
+Repository: [github.com/noutrexx/weather-dashboard](https://github.com/noutrexx/weather-dashboard)
 
-## Screenshots
+## Preview
 
-### Desktop
+![Global Weather Explorer world map](./public/screenshots/home-map-full.png)
 
-![Weather dashboard desktop](./public/screenshots/istanbul-weather.png)
+## Visual States
 
-### Empty State
+| Home Map | Region Focus | City Selected | Mobile |
+| --- | --- | --- | --- |
+| ![World map dashboard home](./public/screenshots/home-map-full.png) | ![Asia region focus](./public/screenshots/region-asia.png) | ![Tokyo selected on the map](./public/screenshots/tokyo-selected.png) | ![Mobile map explorer](./public/screenshots/mobile-map.png) |
 
-![Weather dashboard empty state](./public/screenshots/home-empty.png)
+## What It Does
 
-### Mobile
-
-![Weather dashboard mobile](./public/screenshots/mobile-istanbul.png)
-
-## Features
-
-- Debounced city search with a 500 ms delay
-- Current temperature, humidity, wind, pressure and feels-like values
-- 5-day forecast chart built with Recharts
-- Turkish interface and Turkish API responses
-- Vite proxy for local API calls
-- Clear states for loading, missing API keys, invalid cities and network errors
+- Starts with a clickable world-region map instead of an empty search-only screen.
+- Lets users select regions such as Europe, Asia, Africa, Oceania, and the Americas.
+- Adds city pins, live temperature badges, animated regional flow lines, climate highlights, and visual map metrics.
+- Shows curated quick cities for each selected region.
+- Provides smart city suggestions, keyboard navigation, recent searches, and popular city shortcuts for faster searching.
+- Supports shareable map states through `region` and `city` URL query parameters.
+- Changes the dashboard atmosphere based on the selected city's weather condition.
+- Presents selected-city weather in a premium console with local time, key metrics, and forecast chart.
+- Displays current temperature, humidity, wind, pressure, and feels-like values.
+- Visualizes the 5-day temperature and humidity forecast with Recharts.
+- Handles missing API keys, invalid cities, pending keys, and network errors with clear English messages.
 
 ## Tech Stack
 
 | Area | Tools |
 | --- | --- |
-| Core | React, TypeScript, Vite |
+| Frontend | React, TypeScript, Vite |
 | Styling | Tailwind CSS, clsx, tailwind-merge |
-| Data | Axios, OpenWeatherMap |
-| Charts | Recharts |
+| Weather Data | Axios, OpenWeatherMap |
+| Data Visualization | Recharts |
 | Icons | Lucide React |
+| Tooling | ESLint, TypeScript project references |
 
-## Requirements
+## Experience Details
+
+- **Map-first navigation:** users can browse by region before typing a city name.
+- **Live pin layer:** when an OpenWeatherMap key is available, regional city pins show fresh temperature badges.
+- **City console:** selecting a city turns the lower section into a focused weather console instead of a disconnected result card.
+- **Search memory:** the dashboard remembers recent city selections in local storage.
+- **Responsive density:** desktop keeps labels and temperature badges visible; mobile reduces map label density for readability.
+
+## Setup
+
+Requirements:
 
 - Node.js 18 or newer
 - npm
 - OpenWeatherMap API key
 
-## Setup
+Install dependencies:
 
 ```bash
-git clone https://github.com/noutrexx/weather-r.git
-cd weather-r
+git clone https://github.com/noutrexx/weather-dashboard.git
+cd weather-dashboard
 npm install
 ```
 
-Create `.env` from the example file:
+Create an environment file:
 
 ```bash
 copy .env.example .env
 ```
 
-Set your API key:
+Add your OpenWeatherMap key:
 
 ```env
 VITE_OPENWEATHER_API_KEY=your_api_key_here
 ```
 
-You can verify the key with:
+Check the API key:
 
 ```bash
 node scripts/check-api.mjs
 ```
 
-Start the project:
+Run locally:
 
 ```bash
 npm run dev
 ```
 
-The local app usually opens at `http://localhost:5173`.
+The Vite dev server usually runs at [http://localhost:5173](http://localhost:5173).
 
 ## Scripts
 
@@ -95,18 +109,22 @@ The local app usually opens at `http://localhost:5173`.
 
 ```text
 src/
-  components/  UI components
-  hooks/       React hooks
-  i18n/        Turkish copy and API message translation
+  components/  Search, map, weather cards, alerts, charts
+  data/        World-region and city-option metadata
+  hooks/       Fetching and debounce hooks
+  i18n/        English UI copy and API message translation
   services/    OpenWeatherMap client
-  types/       Weather API types
-  utils/       Helpers for errors, forecast data and class names
+  types/       Weather API response types
+  utils/       Forecast, error, and class-name helpers
 ```
 
-## API Key
+## Production Notes
 
-Create a free key from the [OpenWeatherMap API keys page](https://home.openweathermap.org/api_keys). New keys can take a little time to become active. After changing `.env`, restart the development server.
+- New OpenWeatherMap API keys can take 10-120 minutes to become active.
+- The Vite proxy injects API key, metric units, and English language parameters during local development.
+- For production deployments, define `VITE_OPENWEATHER_API_KEY` in the hosting platform environment variables.
+- The current chart bundle includes Recharts; code-splitting can be added later if stricter bundle budgets are needed.
 
 ## License
 
-This project is open source and can be used for learning or personal work.
+MIT License. See [LICENSE](./LICENSE).

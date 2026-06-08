@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { tr } from '../i18n/tr'
+import { en } from '../i18n/en'
 import type {
   CurrentWeatherResponse,
   ForecastResponse,
@@ -18,7 +18,7 @@ const weatherClient = axios.create({
   params: {
     ...(isDev ? {} : { appid: apiKey }),
     units: 'metric',
-    lang: 'tr',
+    lang: 'en',
   },
 })
 
@@ -27,7 +27,7 @@ function assertApiKey(): void {
     return
   }
   if (!apiKey) {
-    throw new Error(tr.errors.missingApiKey)
+    throw new Error(en.errors.missingApiKey)
   }
 }
 
@@ -57,4 +57,23 @@ export async function fetchForecast(city: string): Promise<ForecastResponse> {
   } catch (error) {
     throw new Error(getErrorMessage(error), { cause: error })
   }
+}
+
+export async function fetchCurrentWeatherBatch(
+  cities: string[],
+): Promise<Record<string, CurrentWeatherResponse>> {
+  const entries = await Promise.allSettled(
+    cities.map(async (city) => [city, await fetchCurrentWeather(city)] as const),
+  )
+
+  return entries.reduce<Record<string, CurrentWeatherResponse>>(
+    (result, entry) => {
+      if (entry.status === 'fulfilled') {
+        const [city, weather] = entry.value
+        result[city] = weather
+      }
+      return result
+    },
+    {},
+  )
 }

@@ -2,7 +2,7 @@ import type { ForecastChartPoint, ForecastResponse } from '../types/weather'
 
 function formatDateLabel(dateKey: string): string {
   const date = new Date(`${dateKey}T12:00:00`)
-  return date.toLocaleDateString('tr-TR', {
+  return date.toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
