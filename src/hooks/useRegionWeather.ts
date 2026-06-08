@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import type { CityOption } from '../data/worldRegions'
 import { fetchCurrentWeatherBatch } from '../services/weatherApi'
@@ -8,6 +8,11 @@ export function useRegionWeather(cities: CityOption[]) {
   const [data, setData] = useState<Record<string, CurrentWeatherResponse>>({})
   const [isLoading, setIsLoading] = useState(false)
 
+  const cityKey = useMemo(
+    () => cities.map((c) => c.query).join(','),
+    [cities],
+  )
+
   useEffect(() => {
     let cancelled = false
 
@@ -15,9 +20,7 @@ export function useRegionWeather(cities: CityOption[]) {
       setIsLoading(true)
 
       try {
-        const result = await fetchCurrentWeatherBatch(
-          cities.map((city) => city.query),
-        )
+        const result = await fetchCurrentWeatherBatch(cityKey.split(','))
 
         if (!cancelled) {
           setData(result)
@@ -38,7 +41,7 @@ export function useRegionWeather(cities: CityOption[]) {
     return () => {
       cancelled = true
     }
-  }, [cities])
+  }, [cityKey])
 
   return { data, isLoading }
 }
