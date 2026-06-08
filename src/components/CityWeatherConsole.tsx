@@ -1,4 +1,4 @@
-import { Clock3, CloudSun, Droplets, Gauge, Wind } from 'lucide-react'
+import { Clock3, CloudSun, Droplets, Gauge, Thermometer, Wind } from 'lucide-react'
 
 import { en } from '../i18n/en'
 import type { CurrentWeatherResponse, ForecastResponse } from '../types/weather'
@@ -82,7 +82,7 @@ export function CityWeatherConsole({
               value={`${current.wind.speed} ${en.current.windUnit}`}
             />
             <ConsoleMetric
-              icon={Gauge}
+              icon={Thermometer}
               label={en.current.feelsLike}
               value={`${Math.round(current.main.feels_like)}°C`}
             />
