@@ -52,7 +52,7 @@ export const en = {
     requestFailed: 'Request failed. Please try again.',
     generic: 'Something went wrong. Please try again.',
     missingApiKey:
-      'VITE_OPENWEATHER_API_KEY is not defined. Add it to your .env file.',
+      'The server-side weather API key is not configured.',
   },
 } as const
 

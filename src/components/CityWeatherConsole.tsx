@@ -1,4 +1,4 @@
-import { Clock3, CloudSun, Droplets, Gauge, Thermometer, Wind } from 'lucide-react'
+import { Clock3, CloudSun, Droplets, Thermometer, Wind } from 'lucide-react'
 
 import { en } from '../i18n/en'
 import type { CurrentWeatherResponse, ForecastResponse } from '../types/weather'

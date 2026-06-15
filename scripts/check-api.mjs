@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 
 const envPath = resolve(process.cwd(), '.env')
 const env = readFileSync(envPath, 'utf8')
-const match = env.match(/^\s*VITE_OPENWEATHER_API_KEY\s*=\s*(\S+)\s*$/m)
+const match = env.match(/^\s*OPENWEATHER_API_KEY\s*=\s*(\S+)\s*$/m)
 
 if (!match) {
   console.log('RESULT: No API key was found in .env')

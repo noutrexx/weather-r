@@ -76,11 +76,13 @@ Create an environment file:
 copy .env.example .env
 ```
 
-Add your OpenWeatherMap key:
+Add your server-only OpenWeatherMap key:
 
 ```env
-VITE_OPENWEATHER_API_KEY=your_api_key_here
+OPENWEATHER_API_KEY=your_api_key_here
 ```
+
+Never prefix the key with `VITE_`; Vite exposes variables with that prefix in the browser bundle.
 
 Check the API key:
 
@@ -116,13 +118,18 @@ src/
   services/    OpenWeatherMap client
   types/       Weather API response types
   utils/       Forecast, error, and class-name helpers
+api/
+  weather.js   Production serverless proxy that injects the secret API key
 ```
 
 ## Production Notes
 
 - New OpenWeatherMap API keys can take 10–120 minutes to become active.
-- The Vite dev proxy injects the API key, metric units, and English language parameters so the key never appears in the browser bundle during development.
-- For production deployments, define `VITE_OPENWEATHER_API_KEY` in your hosting platform's environment variables (Vercel, Netlify, etc.).
+- The frontend only calls `/api/weather`; it never communicates with OpenWeatherMap directly.
+- The Vite development middleware injects the server-only key locally.
+- The included Vercel serverless function at `api/weather.js` injects the key in production.
+- Define `OPENWEATHER_API_KEY` as a server-side environment variable in Vercel. Do not expose it with a `VITE_` prefix.
+- Other static hosting platforms require an equivalent server-side `/api/weather` function or proxy.
 - The app defaults to Celsius (`units=metric`). Changing to Fahrenheit requires updating the `units` param in `weatherApi.ts` and the unit labels in `i18n/en.ts`.
 - The current chart bundle includes Recharts; code-splitting can be added later if stricter bundle budgets are needed.
 

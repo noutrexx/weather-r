@@ -1,44 +1,24 @@
 import axios from 'axios'
 
-import { en } from '../i18n/en'
 import type {
   CurrentWeatherResponse,
   ForecastResponse,
 } from '../types/weather'
 import { getErrorMessage } from '../utils/errors'
 
-const isDev = import.meta.env.DEV
-
-const BASE_URL = isDev ? '/owm' : 'https://api.openweathermap.org/data/2.5'
-
-const apiKey = (import.meta.env.VITE_OPENWEATHER_API_KEY ?? '').trim()
-
 const weatherClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: '/api/weather',
   params: {
-    ...(isDev ? {} : { appid: apiKey }),
-    units: 'metric',
-    lang: 'en',
+    endpoint: 'weather',
   },
 })
-
-function assertApiKey(): void {
-  if (isDev) {
-    return
-  }
-  if (!apiKey) {
-    throw new Error(en.errors.missingApiKey)
-  }
-}
 
 export async function fetchCurrentWeather(
   city: string,
 ): Promise<CurrentWeatherResponse> {
-  assertApiKey()
-
   try {
-    const { data } = await weatherClient.get<CurrentWeatherResponse>('/weather', {
-      params: { q: city.trim() },
+    const { data } = await weatherClient.get<CurrentWeatherResponse>('', {
+      params: { endpoint: 'weather', q: city.trim() },
     })
     return data
   } catch (error) {
@@ -47,11 +27,9 @@ export async function fetchCurrentWeather(
 }
 
 export async function fetchForecast(city: string): Promise<ForecastResponse> {
-  assertApiKey()
-
   try {
-    const { data } = await weatherClient.get<ForecastResponse>('/forecast', {
-      params: { q: city.trim(), cnt: 40 },
+    const { data } = await weatherClient.get<ForecastResponse>('', {
+      params: { endpoint: 'forecast', q: city.trim() },
     })
     return data
   } catch (error) {

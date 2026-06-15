@@ -25,9 +25,6 @@ export function useFetch<T>(
 
   useEffect(() => {
     if (!enabled) {
-      setData(null)
-      setError(null)
-      setIsLoading(false)
       return
     }
 
@@ -62,5 +59,10 @@ export function useFetch<T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps array is caller-controlled
   }, [enabled, tick, ...deps])
 
-  return { data, isLoading, error, refetch }
+  return {
+    data: enabled ? data : null,
+    isLoading: enabled ? isLoading : false,
+    error: enabled ? error : null,
+    refetch,
+  }
 }
